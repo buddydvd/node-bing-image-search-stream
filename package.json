@@ -1,0 +1,43 @@
+{
+  "name": "bing-image-search-stream",
+  "description": "Readable stream to Bing's Image Search API",
+  "version": "0.0.0",
+  "author": "David Hu",
+  "bin": {
+    "bing-image-search": "./lib/index.js"
+  },
+  "bugs": "https://github.com/funpokes/node-bing-image-search-stream/issues",
+  "dependencies": {
+    "node-fetch": "^2.1.2",
+    "universal-url": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1"
+  },
+  "engines": {
+    "node": ">=6.10.0"
+  },
+  "files": [
+    "/lib"
+  ],
+  "homepage": "https://github.com/funpokes/node-bing-image-search-stream",
+  "keywords": [
+    "bing-api",
+    "image-search",
+    "stream",
+    "nodejs"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "repository": "funpokes/node-bing-image-search-stream",
+  "scripts": {
+    "build": "babel src -d lib",
+    "prepublishOnly": "npm run build",
+    "posttest": "eslint ."
+  }
+}
