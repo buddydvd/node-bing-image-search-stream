@@ -1,8 +1,6 @@
-'use strict';
-
-const fetch = require('node-fetch');
-const { URL, URLSearchParams } = require('universal-url');
-const { Readable } = require('stream');
+import fetch from 'node-fetch';
+import { URL, URLSearchParams } from 'universal-url';
+import { Readable } from 'stream';
 
 const apiEndPoint = 'https://api.cognitive.microsoft.com/bing/v7.0/images/search';
 const defaultOffset = 0;
@@ -21,7 +19,7 @@ function filterNulls(obj) {
   );
 }
 
-class BingImageSearchStream extends Readable {
+export default class BingImageSearchStream extends Readable {
   constructor({ key, query, market, safeSearch, offset, count, amount, fetchCb } = { }) {
     super({ objectMode: true, highWaterMark: 1 });
     this.key = key;
@@ -74,5 +72,3 @@ class BingImageSearchStream extends Readable {
     }
   }
 }
-
-module.exports = BingImageSearchStream;
