@@ -1,7 +1,7 @@
 {
   "name": "bing-image-search-stream",
   "description": "Readable stream to Bing's Image Search API",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "David Hu",
   "bin": {
     "bing-image-search": "./lib/index.js"
