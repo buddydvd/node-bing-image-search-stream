@@ -27,62 +27,59 @@ function filterNulls(obj) {
   );
 }
 
+async function* search(options) {
+  const { key, query, market, safeSearch, offset, count, amount, fetchCb } = Object.assign(
+    { },
+    defaults,
+    options,
+  );
+  let currOffset = offset;
+  let currAmount = amount;
+  let available = currOffset + currAmount;
+  let clientID = null;
+
+  while (currOffset < Math.min(currOffset + currAmount, available)) {
+    const requestUrl = new URL(apiEndPoint);
+    const requestParams = filterNulls({
+      q: query,
+      mkt: market,
+      safeSearch,
+      offset: currOffset,
+      count: Math.min(count, Math.min(currOffset + currAmount, available) - currOffset),
+    });
+    const requestHeaders = filterNulls({
+      [apiKeyHeaderName]:   key,
+      [clientIDHeaderName]: clientID,
+      [acceptHeaderName]: acceptHeaderValue,
+    });
+    requestUrl.search = new URLSearchParams(requestParams);
+    const requestOptions = {
+      method: 'GET',
+      headers: requestHeaders,
+    };
+    const response = await fetchCb(requestUrl.toString(), requestOptions);
+    const { ok, status, statusText } = response;
+    if (!ok) { throw new Error(`HTTP error ${status}: "${statusText}"`); }
+    const body = await response.json();
+    currOffset = body.nextOffset;
+    currAmount -= body.value.length;
+    available = body.totalEstimatedMatches;
+    clientID = response.headers.get(clientIDHeaderName);
+    yield body;
+  }
+}
+
 export default class BingImageSearchStream extends Readable {
   constructor(options) {
-    const { key, query, market, safeSearch, offset, count, amount, fetchCb } = Object.assign(
-      { },
-      defaults,
-      options,
-    );
     super({ objectMode: true, highWaterMark: 1 });
-    this.key = key;
-    this.query = query;
-    this.market = market;
-    this.safeSearch = safeSearch;
-    this.offset = offset || defaultOffset;
-    this.count = count || defaultCount;
-    this.amount = amount || defaultAmount;
-    this.fetchCb = fetchCb || defaultFetchCb;
-    this.available = this.offset + this.amount;
+    this.iterator = search(options);
   }
-  _read() {
-    const endOffset = Math.min(this.offset + this.amount, this.available);
-    if (this.offset < endOffset) {
-      const requestUrl = new URL(apiEndPoint);
-      const requestParams = filterNulls({
-        q:          this.query,
-        mkt:        this.market,
-        safeSearch: this.safeSearch,
-        offset:     this.offset,
-        count:      Math.min(this.count, endOffset - this.offset),
-      });
-      const requestHeaders = filterNulls({
-        [apiKeyHeaderName]:   this.key,
-        [clientIDHeaderName]: this.clientID,
-        [acceptHeaderName]: acceptHeaderValue,
-      });
-      requestUrl.search = new URLSearchParams(requestParams);
-      const requestOptions = {
-        method: 'GET',
-        headers: requestHeaders,
-      };
-      (async () => {
-        try {
-          const response = await this.fetchCb(requestUrl.toString(), requestOptions);
-          const { ok, status, statusText } = response;
-          if (!ok) { throw new Error(`HTTP error ${status}: "${statusText}"`); }
-          const body = await response.json();
-          this.offset = body.nextOffset;
-          this.amount -= body.value.length;
-          this.available = body.totalEstimatedMatches;
-          this.clientID = response.headers.get(clientIDHeaderName);
-          this.push(body);
-        } catch (err) {
-          process.nextTick(() => { this.emit('error', err); });
-        }
-      })();
-    } else {
-      this.push(null);
+  async _read() {
+    try {
+      const result = await this.iterator.next();
+      this.push(!result.done ? result.value : null);
+    } catch (err) {
+      process.nextTick(() => { this.emit('error', err); });
     }
   }
 }
