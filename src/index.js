@@ -9,6 +9,8 @@ const defaultAmount = 2000;
 const defaultFetchCb = fetch;
 const apiKeyHeaderName = 'Ocp-Apim-Subscription-Key';
 const clientIDHeaderName = 'X-MSEdge-ClientID';
+const acceptHeaderName = 'Accept';
+const acceptHeaderValue = 'application/json';
 
 function filterNulls(obj) {
   return Object.assign(
@@ -46,6 +48,7 @@ export default class BingImageSearchStream extends Readable {
       const requestHeaders = filterNulls({
         [apiKeyHeaderName]:   this.key,
         [clientIDHeaderName]: this.clientID,
+        [acceptHeaderName]: acceptHeaderValue,
       });
       requestUrl.search = new URLSearchParams(requestParams);
       const requestOptions = {
