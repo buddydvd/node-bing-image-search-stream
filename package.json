@@ -3,9 +3,6 @@
   "description": "Readable stream to Bing's Image Search API",
   "version": "0.0.1",
   "author": "David Hu",
-  "bin": {
-    "bing-image-search": "./lib/index.js"
-  },
   "bugs": "https://github.com/funpokes/node-bing-image-search-stream/issues",
   "dependencies": {
     "node-fetch": "^2.1.2",
