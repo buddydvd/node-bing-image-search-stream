@@ -3,10 +3,16 @@ import { URL, URLSearchParams } from 'universal-url';
 import { Readable } from 'stream';
 
 const apiEndPoint = 'https://api.cognitive.microsoft.com/bing/v7.0/images/search';
-const defaultOffset = 0;
-const defaultCount = 150;
-const defaultAmount = 2000;
-const defaultFetchCb = fetch;
+const defaults = {
+  key: null,
+  query: null,
+  market: null,
+  safeSearch: null,
+  offset: 0,
+  count: 150,
+  amount: 2000,
+  fetchCb: fetch,
+};
 const apiKeyHeaderName = 'Ocp-Apim-Subscription-Key';
 const clientIDHeaderName = 'X-MSEdge-ClientID';
 const acceptHeaderName = 'Accept';
@@ -22,7 +28,12 @@ function filterNulls(obj) {
 }
 
 export default class BingImageSearchStream extends Readable {
-  constructor({ key, query, market, safeSearch, offset, count, amount, fetchCb } = { }) {
+  constructor(options) {
+    const { key, query, market, safeSearch, offset, count, amount, fetchCb } = Object.assign(
+      { },
+      defaults,
+      options,
+    );
     super({ objectMode: true, highWaterMark: 1 });
     this.key = key;
     this.query = query;
