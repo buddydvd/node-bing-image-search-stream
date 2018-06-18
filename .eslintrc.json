@@ -6,7 +6,7 @@
   "plugins": ["node"],
   "extends": ["airbnb-base", "plugin:node/recommended"],
   "parserOptions": {
-    "ecmaVersion": 8,
+    "ecmaVersion": 9,
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true
     },
