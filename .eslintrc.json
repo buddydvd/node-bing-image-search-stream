@@ -31,6 +31,7 @@
     "object-curly-newline": "off",
     "prefer-destructuring": "off",
     "linebreak-style": "off",
+    "no-await-in-loop": "off",
     "node/shebang": "off",
     "node/no-unsupported-features": ["error", {
       "version": 10.0,
