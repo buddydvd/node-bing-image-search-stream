@@ -9,5 +9,5 @@
       }
     ]
   ],
-  "plugins": ["add-module-exports"]
+  "plugins": ["add-module-exports", "transform-async-generator-functions"]
 }
