@@ -1,5 +1,5 @@
 import { Readable } from 'stream';
-import search from './bing-image-search-async-iterator';
+import search from 'bing-image-search-async-iterator';
 
 export default class BingImageSearchStream extends Readable {
   constructor(options) {
