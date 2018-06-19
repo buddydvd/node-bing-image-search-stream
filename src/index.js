@@ -1,5 +1,4 @@
 import fetch from 'node-fetch';
-import { URL, URLSearchParams } from 'universal-url';
 import { Readable } from 'stream';
 
 const apiEndPoint = 'https://api.cognitive.microsoft.com/bing/v7.0/images/search';
@@ -27,6 +26,12 @@ function filterNulls(obj) {
   );
 }
 
+function stringify(obj) {
+  return Object.keys(obj)
+    .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(obj[k])}`)
+    .join('&');
+}
+
 async function* search(options) {
   const { key, query, market, safeSearch, offset, count, amount, fetchCb } = Object.assign(
     { },
@@ -39,7 +44,6 @@ async function* search(options) {
   let clientID = null;
 
   while (currOffset < Math.min(currOffset + currAmount, available)) {
-    const requestUrl = new URL(apiEndPoint);
     const requestParams = filterNulls({
       q: query,
       mkt: market,
@@ -52,12 +56,12 @@ async function* search(options) {
       [clientIDHeaderName]: clientID,
       [acceptHeaderName]: acceptHeaderValue,
     });
-    requestUrl.search = new URLSearchParams(requestParams);
     const requestOptions = {
       method: 'GET',
       headers: requestHeaders,
     };
-    const response = await fetchCb(requestUrl.toString(), requestOptions);
+    const requestUrl = `${apiEndPoint}?${stringify(requestParams)}`;
+    const response = await fetchCb(requestUrl, requestOptions);
     const { ok, status, statusText } = response;
     if (!ok) { throw new Error(`HTTP error ${status}: "${statusText}"`); }
     const body = await response.json();
