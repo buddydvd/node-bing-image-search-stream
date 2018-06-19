@@ -5,8 +5,7 @@
   "author": "David Hu",
   "bugs": "https://github.com/funpokes/node-bing-image-search-stream/issues",
   "dependencies": {
-    "node-fetch": "^2.1.2",
-    "universal-url": "^1.0.0"
+    "node-fetch": "^2.1.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
