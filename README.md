@@ -1,11 +1,11 @@
 # Node.js Bing Image Search Stream
-Query Bing Image Search API ([v7](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference)) and return results as a readable stream of response objects.
+Query Bing Image Search API ([v7](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference)) and get a readable stream of response objects.
 
 ## Motivation
 [Bing Image Search API](https://azure.microsoft.com/en-us/services/cognitive-services/bing-image-search-api/) returns up to [150](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference#count) results per API call. To access more results, you need to specify the proper [`offset`](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference#offset) request parameter in a subsequent API call. This module automates the process of filling the [`offset`](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference#offset) parameter value and determines when to stop making API calls— what you get in the end is a readable stream of parsed responses.
 
 ## Response objects
-Please note that the result objects returned by the stream wrap search search results in the [`value`](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference#images-value) field.
+Please note that response objects wrap search results in the [`value`](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference#images-value) field.
 
 ```JS
 {
@@ -87,7 +87,7 @@ const BingImageSearchStream = require('bing-image-search-stream');
 ## Features
 
 - Turns a search query into a stream of search response objects
-- Ends stream when _requested amount is reached_ or _there are no more results_
+- Ends stream _when requested amount is reached_ or _whenthere are no more results_
 - [Avoids results overlap](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference#offset) by specifying the [`offset`](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference#offset) API parameter with previous response's [`nextOffset`](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference#nextoffset) value
 - Fills in [`X-MSEdge-ClientID`](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference#clientid) automatically based on previous API responses
 
