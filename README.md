@@ -73,16 +73,18 @@ const BingImageSearchStream = require('bing-image-search-stream');
 ```
 
 ## Options
-| Parameter | Type | Default | Description |
-| --------- | ---- | ------- | ----------- |
-| key | `string` | __(required)__ | [Bing Image Search API](https://azure.microsoft.com/en-us/services/cognitive-services/bing-image-search-api/) Subscription Key |
-| query | `string` | __(required)__ | Search [query](https://msdn.microsoft.com/library/ff795620.aspx) |
-| amount | `integer` | 2000 | Desired count of results |
-| market | `string` | | [*Market Code*](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference#market-codes) of request origin (e.g., `en-US`) |
-| safeSearch | `string` | `Moderate` | [Filter adult content](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference#safesearch) (`Off`, `Moderate`, ``Strict``) |
-| offset | `integer` | `0` | [Offset](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference#offset) of the initial API call |
-| count | `integer` | `150` | [Count](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference#count) of results per API call (lower this value may result in more API calls) |
-| fetchCb | `function` | [`fetch`](https://github.com/bitinn/node-fetch) | Callback to construct a request that returns a response promise |
+| Parameter    | Type       | Default        | Description                                                        |
+| ------------ | ---------- | -------------- | ------------------------------------------------------------------ |
+| key          | `string`   |                | **(Required)** [Bing Image Search API](https://azure.microsoft.com/en-us/services/cognitive-services/bing-image-search-api/) Subscription Key |
+| query        | `string`   |                | **(Required)** Search [query](https://msdn.microsoft.com/library/ff795620.aspx) |
+| amount       | `integer`  | 2000           | Desired count of results |
+| market       | `string`   |                | [*Market Code*](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference#market-codes) of request origin (e.g., `en-US`) |
+| safeSearch   | `string`   | `Moderate`     | [Filter adult content](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference#safesearch) (`Off`, `Moderate`, ``Strict``) |
+| offset       | `integer`  | `0`            | [Offset](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference#offset) of the initial API call |
+| count        | `integer`  | `150`          | [Count](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference#count) of results per API call (lower this value may result in more API calls) |
+| queryParams  | `object`   |                | Additional query params (e.g., `{ imageType: "AnimatedGif" }`) |
+| headerParams | `object`   |                | Additional header params (e.g., `{ Pragma: "no-cache" }`) |
+| fetchCb      | `function` |                [`fetch`](https://github.com/bitinn/node-fetch) | Callback to construct a request that returns a response promise |
 
 ## Features
 
