@@ -1,7 +1,7 @@
 {
   "name": "bing-image-search-stream",
   "description": "Readable stream to Bing's Image Search API",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "David Hu",
   "bugs": "https://github.com/funpokes/node-bing-image-search-stream/issues",
   "dependencies": {
