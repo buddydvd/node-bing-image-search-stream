@@ -12,6 +12,7 @@ export default class BingImageSearchStream extends Readable {
     }
     this.done = false;
   }
+
   async _read() {
     try {
       const result = await this.iterator.next();
@@ -21,6 +22,7 @@ export default class BingImageSearchStream extends Readable {
       process.nextTick(() => { this.emit('error', err); });
     }
   }
+
   async _destroy(err, cb) {
     let error = err;
     if (!this.done) {

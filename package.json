@@ -5,18 +5,18 @@
   "author": "David Hu",
   "bugs": "https://github.com/funpokes/node-bing-image-search-stream/issues",
   "dependencies": {
-    "bing-image-search-async-iterator": "^1.2.2"
+    "bing-image-search-async-iterator": "^1.2.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-async-generator-functions": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-node": "^6.0.1"
+    "babel-plugin-add-module-exports": "^1.0.2",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-node": "^9.1.0"
   },
   "engines": {
     "node": ">=6"
