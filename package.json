@@ -8,15 +8,15 @@
     "bing-image-search-async-iterator": "^1.2.3"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
-    "@babel/plugin-proposal-async-generator-functions": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "babel-plugin-add-module-exports": "^1.0.2",
-    "eslint": "^6.0.1",
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.2",
+    "@babel/plugin-proposal-async-generator-functions": "^7.20.1",
+    "@babel/preset-env": "^7.20.2",
+    "babel-plugin-add-module-exports": "^1.0.4",
+    "eslint": "^8.27.0",
     "eslint-config-airbnb-base": "^13.2.0",
-    "eslint-plugin-import": "^2.18.0",
-    "eslint-plugin-node": "^9.1.0"
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^9.2.0"
   },
   "engines": {
     "node": ">=6"
