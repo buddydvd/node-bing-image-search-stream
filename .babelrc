@@ -11,6 +11,6 @@
   ],
   "plugins": [
     "add-module-exports",
-    "@babel/plugin-proposal-async-generator-functions"
+    "@babel/plugin-transform-async-generator-functions"
   ]
 }
