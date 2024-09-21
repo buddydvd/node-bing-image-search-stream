@@ -1,9 +1,9 @@
 {
   "name": "bing-image-search-stream",
   "description": "Readable stream to Bing's Image Search API",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "author": "David Hu",
-  "bugs": "https://github.com/funpokes/node-bing-image-search-stream/issues",
+  "bugs": "https://github.com/buddydvd/node-bing-image-search-stream/issues",
   "dependencies": {
     "bing-image-search-async-iterator": "^1.2.3"
   },
@@ -24,7 +24,7 @@
   "files": [
     "/lib/index.js"
   ],
-  "homepage": "https://github.com/funpokes/node-bing-image-search-stream",
+  "homepage": "https://github.com/buddydvd/node-bing-image-search-stream",
   "keywords": [
     "bing-api",
     "image-search",
@@ -33,7 +33,7 @@
   ],
   "license": "MIT",
   "main": "lib/index.js",
-  "repository": "funpokes/node-bing-image-search-stream",
+  "repository": "buddydvd/node-bing-image-search-stream",
   "scripts": {
     "build": "babel src -d lib",
     "prepublishOnly": "npm run build",
